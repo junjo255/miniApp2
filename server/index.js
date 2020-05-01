@@ -39,6 +39,8 @@ app.use('/api/covid', (req, res) => {
             id++;
           }
         })
+
+          console.log(covidByZipCode);
           res.status(200).send(JSON.stringify(covidByZipCode));
       })
 });
