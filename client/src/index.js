@@ -1,9 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 const axios = require('axios');
+import Header from './components/header.js';
 import CaseContainer from './components/caseContainer.js';
-import FilterForm from './components/filterForm';
-import Pagination from './components/pagination';
+import FilterForm from './components/filterForm.js';
+import Pagination from './components/pagination.js';
+import Footer from './components/footer.js'
+import './styles.css';
 
 class App extends React.Component {
      constructor(props){
@@ -57,11 +60,13 @@ class App extends React.Component {
 
           return (
                <div>
-                    <FilterForm onDropDownChange={this.handleChange} sort={this.state.sort} />
-                    <hr />
-                    <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
-                    <Pagination onPageChange={this.handlePagination} showPerPage={showPerPage} dataLength={this.state.covidData.length} />
-                    <div>Page is {currentPage}</div>
+                    <Header />
+                    <main>
+                         <FilterForm onDropDownChange={this.handleChange} sort={this.state.sort} />
+                         <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
+                         <Pagination onPageChange={this.handlePagination} showPerPage={showPerPage} dataLength={this.state.covidData.length} />
+                    </main>
+                    <Footer />
                </div>
                )
      }

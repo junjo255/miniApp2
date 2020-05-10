@@ -25,7 +25,7 @@ class Pagination extends React.Component {
 
 
 		return (
-			<ul>
+			<ul className="pages">
 				{pages.map(page => {
 					return (
 						<li key={page} value={page} onClick={this.handlePagination}>{page}</li>
