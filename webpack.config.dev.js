@@ -20,39 +20,16 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              url: false,
-              modules: true,
-              sourceMap: true,
-              localIdentName: '[local]__[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'sass-resources-loader',
-            options: {
-              resources: require(path.join(
-                process.cwd(),
-                'client/src/sass/utils.js'
-              )),
-            },
-          },
-        ],
+          'css-loader'
+        ]
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: ['.js', '.jsx', '.css'],
     modules: [src_path, 'node_modules'],
   },
   devServer: {

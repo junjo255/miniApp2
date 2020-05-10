@@ -4,6 +4,7 @@ import CaseRow from './caseRow.js';
 
 
 const CaseContainer = (props) => {
+
 	return (
 		<table>
       <thead>
@@ -18,7 +19,7 @@ const CaseContainer = (props) => {
       	{
       		props.cases.map((covidCase, idx) => {
       			return (
-      				<CaseRow key={idx} covidCase={covidCase} idx={idx + 1} />
+      				<CaseRow key={idx} covidCase={covidCase} idx={idx + 1} showPerPage={props.showPerPage} currentPage={props.currentPage} />
       				)
       		})
       	}

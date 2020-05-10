@@ -13,11 +13,14 @@ class FilterForm extends React.Component {
 
 	render(){
 		return (
-			<div>
+			<div className="drop-down">
+			<label>
+			Sort by: 
 				<select value={this.props.sort} onChange={this.handleChange}>
 					<option value="zip">Zipcode</option>
 					<option value="positive">Positive</option>
 				</select>
+				</label>
 			</div>
 			)
 	}
