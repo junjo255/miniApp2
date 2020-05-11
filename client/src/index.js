@@ -6,6 +6,7 @@ import CaseContainer from './components/caseContainer.js';
 import FilterForm from './components/filterForm.js';
 import Pagination from './components/pagination.js';
 import Footer from './components/footer.js'
+import Map from './components/map.js';
 import './styles.css';
 
 class App extends React.Component {
@@ -17,10 +18,12 @@ class App extends React.Component {
                     covidDataPos: [],
                     sort: "zip",
                     showPerPage: 20,
-                    currentPage: 1
+                    currentPage: 1,
+                    toggleTable: true
      		}
                this.handleChange = this.handleChange.bind(this);
                this.handlePagination = this.handlePagination.bind(this);
+               this.handleToggle = this.handleToggle.bind(this);
      }
 
      componentDidMount() {
@@ -43,6 +46,12 @@ class App extends React.Component {
           });
      }
 
+     handleToggle() {
+          this.setState(prev => {
+               return { toggleTable: !prev.toggleTable}
+          });
+     }
+
      render(){
           let sorted;
           let data;
@@ -58,14 +67,29 @@ class App extends React.Component {
 
           data = sorted.slice(showPerPage * currentPage - showPerPage, showPerPage * currentPage)
 
-          return (
-               <div>
-                    <Header />
-                    <main>
+          let main;
+          if(this.state.toggleTable){
+               main = <main>
+                         <button onClick ={this.handleToggle} >
+                              {!this.state.toggleTable ? "View Map" : "View Table"}
+                         </button>
                          <FilterForm onDropDownChange={this.handleChange} sort={this.state.sort} />
                          <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
                          <Pagination onPageChange={this.handlePagination} showPerPage={showPerPage} dataLength={this.state.covidData.length} />
-                    </main>
+                      </main>
+          } else {
+               main = <main>
+                         <button onClick ={this.handleToggle} >
+                              {!this.state.toggleTable ? "View Map" : "View Table"}
+                         </button>
+                         <Map />
+                      </main>
+          }
+
+          return (
+               <div>
+                    <Header />
+                         {main}
                     <Footer />
                </div>
                )
